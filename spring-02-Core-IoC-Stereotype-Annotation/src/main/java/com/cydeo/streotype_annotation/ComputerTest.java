@@ -14,7 +14,7 @@ public class ComputerTest {
         ApplicationContext container = new AnnotationConfigApplicationContext(PcConfig.class);
 
         Monitor theMonitor = container.getBean(Monitor.class);
-        System.out.println(theMonitor.getSize());
+        System.out.println(theMonitor.getSize()); // 25 - comes from SonyMonitor because @Primary
 
 
     }

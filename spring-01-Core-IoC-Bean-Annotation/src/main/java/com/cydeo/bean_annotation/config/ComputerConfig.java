@@ -20,6 +20,11 @@ public class ComputerConfig {
 
     }
 
+    @Bean(name="sony2")
+    public Monitor monitorSony2(){
+
+        return new SonyMonitor("40 inc Beast","Sony",40);
+    }
 
     @Bean
     @Primary // this one is default one : higher preference
