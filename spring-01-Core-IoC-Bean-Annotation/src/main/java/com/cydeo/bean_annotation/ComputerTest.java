@@ -69,8 +69,8 @@ public class ComputerTest {
 
         //3 ways
 
-        Monitor theMonitor2 = container.getBean("monitorSony", Monitor.class); // default bean name so method name in the config class
-        Monitor theMonitor3 = container.getBean("sony", Monitor.class); // custom bean name
+        //Monitor theMonitor2 = container.getBean("monitorSony", Monitor.class); // default bean name so method name in the config class
+        //Monitor theMonitor3 = container.getBean("sony", Monitor.class); // custom bean name
         Monitor theMonitor4 = container.getBean(Monitor.class); // @Primary
 
 
