@@ -1,5 +1,6 @@
 package com.cydeo.streotype_annotation;
 
+import com.cydeo.streotype_annotation.casefactory.Case;
 import com.cydeo.streotype_annotation.config.PcConfig;
 import com.cydeo.streotype_annotation.monitorfactory.Monitor;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +15,6 @@ public class ComputerTest {
 
         Monitor theMonitor = container.getBean(Monitor.class);
         System.out.println(theMonitor.getSize());
-
 
 
     }
