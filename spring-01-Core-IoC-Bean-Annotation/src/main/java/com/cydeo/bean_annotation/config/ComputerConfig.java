@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class ComputerConfig {
 
-    @Bean(name = "sony")
+    @Bean(name = "sony") // is going to save as sony in the container
     public Monitor monitorSony(){ // return object instance
         return new SonyMonitor("25 inc Beast", "Sony",25); // Monitor abc = new SonyMonitor();
 
@@ -22,7 +22,7 @@ public class ComputerConfig {
 
 
     @Bean
-    @Primary // this one is default one
+    @Primary // this one is default one : higher preference
     public Monitor monitorAcer(){
         return new AcerMonitor("23 inc Beast", "Acer",23); // Monitor abc = new SonyMonitor();
 
