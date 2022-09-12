@@ -3,6 +3,7 @@ package com.cydeo.bean_annotation;
 import com.cydeo.bean_annotation.casefactory.Case;
 import com.cydeo.bean_annotation.config.ComputerConfig;
 import com.cydeo.bean_annotation.config.RandomConfig;
+import com.cydeo.bean_annotation.monitorfactory.AcerMonitor;
 import com.cydeo.bean_annotation.monitorfactory.Monitor;
 import com.cydeo.bean_annotation.monitorfactory.SonyMonitor;
 import com.cydeo.bean_annotation.motherboardfactory.Motherboard;
@@ -23,13 +24,16 @@ public class ComputerTest {
         //BeanFactory context = new AnnotationConfigApplicationContext();
 
 
-        Monitor theMonitor = container.getBean(Monitor.class);
-        //Monitor theMonitor = container.getBean(SonyMonitor.class);
+        Monitor theMonitor = container.getBean(Monitor.class); // error : 2 monitor we have Sony and Acer
 
+        //Monitor theMonitor = container.getBean(SonyMonitor.class);
+        //Monitor monitorAcer = container.getBean(AcerMonitor.class);
+
+        //we can write also :
         //SonyMonitor theMonitor = container.getBean(SonyMonitor.class);
+
         Case theCase = container.getBean(Case.class);
         Motherboard theMotherboard = container.getBean(Motherboard.class);
-
 
         PC myPc = new PC(theCase,theMonitor,theMotherboard);
 

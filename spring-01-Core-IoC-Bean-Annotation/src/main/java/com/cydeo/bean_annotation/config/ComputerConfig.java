@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class ComputerConfig {
 
     @Bean
-    public Monitor monitorSony(){
+    public Monitor monitorSony(){ // return object instance
         return new SonyMonitor("25 inc Beast", "Sony",25); // Monitor abc = new SonyMonitor();
 
     }
