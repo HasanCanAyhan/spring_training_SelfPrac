@@ -46,7 +46,7 @@ public class ComputerTest {
 
         System.out.println("****************Retrieving the beans******************");
 
-        SonyMonitor sony = container.getBean(SonyMonitor.class);
+        SonyMonitor sony = container.getBean(SonyMonitor.class); // give me Sony-object
         DellCase dell = container.getBean(DellCase.class);
         AsusMotherboard asus = container.getBean(AsusMotherboard.class);
 
