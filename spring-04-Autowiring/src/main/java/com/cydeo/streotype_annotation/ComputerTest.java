@@ -12,7 +12,7 @@ public class ComputerTest {
 
         PC myPc = container.getBean(PC.class);
 
-
+        myPc.powerUp();
 
 
 
