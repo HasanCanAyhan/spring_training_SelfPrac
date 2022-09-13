@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class PC {
+public class PC { // Spring do : new PC(case monitor motherboard);
 
     //@Autowired
     private Case theCase;
@@ -23,6 +23,8 @@ public class PC {
 
     // or : you can use also : constructor injection : mostly used
     //@Autowired
+
+    // if you have one constructor , you do not need to put @Autowired
     public PC(Case theCase, Monitor monitor, Motherboard motherboard) {
         this.theCase = theCase;
         this.monitor = monitor;
