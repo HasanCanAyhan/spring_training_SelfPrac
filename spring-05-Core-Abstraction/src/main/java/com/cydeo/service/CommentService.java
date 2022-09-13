@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 public class CommentService {
 
     //unique stuff , business logic
-    private CommentRepository commentRepository; // Interface - loosely coupled
+    private final CommentRepository commentRepository; // Interface - loosely coupled
 
-    private CommentNotificationProxy commentNotificationProxy; // Interface
+    private final CommentNotificationProxy commentNotificationProxy; // Interface
 
     public CommentService(CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
         this.commentRepository = commentRepository;
