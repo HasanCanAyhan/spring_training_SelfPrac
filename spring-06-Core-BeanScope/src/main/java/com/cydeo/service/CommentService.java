@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 //@Scope("prototype")
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class CommentService {
+public class CommentService { // usage story
 
     //unique stuff , business logic
     private final CommentRepository commentRepository; // Interface - loosely coupled
