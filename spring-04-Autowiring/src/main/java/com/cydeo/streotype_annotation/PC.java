@@ -11,13 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class PC {
 
+    //@Autowired
     private Case theCase;
 
+    //@Autowired
     private Monitor monitor;
 
+    //@Autowired
     private Motherboard motherboard;
 
-    //@Autowired // constructor injection
+
+    // or : you can use also : constructor injection : mostly used
+    //@Autowired
     public PC(Case theCase, Monitor monitor, Motherboard motherboard) {
         this.theCase = theCase;
         this.monitor = monitor;
