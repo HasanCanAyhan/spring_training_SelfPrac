@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class PC { // Spring do : new PC(case monitor motherboard);
+public class PC {
+    // when ypu put @Component,  Spring do : new PC();
+    //But here we have AllArgsConstructor that s why ==>> Spring do : new PC(case, monitor, motherboard)
 
     //@Autowired
     private Case theCase;

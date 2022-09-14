@@ -15,6 +15,7 @@ public class ComputerTest {
         myPc.powerUp();
 
         System.out.println(myPc.getTheCase().getDimensions().getDepth());
+        // Normally, it will be printed default int value 0 , but because we have default constructor in the Dimensions , then it returns int value : 40
 
 
 

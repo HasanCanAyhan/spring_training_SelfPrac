@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-//@AllArgsConstructor
+//@AllArgsConstructor : if you put that, then that means you trying to inject those fields(int ... ) to Dimension Object
 @Component
 public class Dimensions { // new Dimensions(int int int)
 
@@ -17,7 +17,7 @@ public class Dimensions { // new Dimensions(int int int)
     private int height;
     private int depth;
 
-    public Dimensions() {
+    public Dimensions() { // default Constructor, Dimension object is coming with those value
         this.width=10;
         this.height=30;
         this.depth=40;
