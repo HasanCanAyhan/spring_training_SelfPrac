@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 public class CommentService {
 
     //unique stuff , business logic
+
+    //private final DBCommentRepository dbCommentRepository; // Class - tightly coupled : X
     private final CommentRepository commentRepository; // Interface - loosely coupled
 
     private final CommentNotificationProxy commentNotificationProxy; // Interface
