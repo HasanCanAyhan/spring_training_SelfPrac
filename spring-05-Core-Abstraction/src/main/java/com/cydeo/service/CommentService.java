@@ -21,6 +21,8 @@ public class CommentService {
     //@Autowired : no needed ; Constructor will be enough
     private final CommentNotificationProxy commentNotificationProxy; // Interface
 
+
+    //                                                           @Qualifier("emailCommentNotificationProxy") or:
     //                                                                      default bean name
     public CommentService(CommentRepository commentRepository, @Qualifier("EMAIL") CommentNotificationProxy commentNotificationProxy) {
         this.commentRepository = commentRepository;
