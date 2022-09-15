@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 //@AllArgsConstructor : if you put that, then that means you trying to inject those fields(int ... ) to Dimension Object
+                        // because AllArgsConst means Autowired and those fields will be injected to Dimension : dont do this
 @Component
 public class Dimensions { // new Dimensions(int int int)
 
