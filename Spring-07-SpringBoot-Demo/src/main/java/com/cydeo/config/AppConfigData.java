@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 //@Component
 @Data
-@Configuration // it has inside @component but if it is @Value
+@Configuration // you can use this : it has inside @component but if it is @Value
 public class AppConfigData {
 
     @Value("${username}")
