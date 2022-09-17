@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class PC {
 
-    private DellCase theCase;
+    private DellCase theCase; // what if we add in the future AsusCase
     private AcerMonitor monitor;
     private AsusMotherboard motherboard;
 

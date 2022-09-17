@@ -14,6 +14,7 @@ public class PcConfig {
     public Dimensions dimensions(){
         return new Dimensions(50,10,10);
     }
+
     /*
     @Bean
     @Primary

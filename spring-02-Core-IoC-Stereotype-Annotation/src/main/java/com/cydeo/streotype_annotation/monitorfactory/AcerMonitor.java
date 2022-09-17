@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class AcerMonitor extends Monitor {
 
     public AcerMonitor() {
-        super("25 inch beast","Sony",25);
+        super("25 inch beast","Sony",12);
     }
 
     public void drawPixelAt() {
