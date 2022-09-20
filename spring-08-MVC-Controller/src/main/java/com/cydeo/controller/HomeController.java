@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //to register those views  inside the Handler Mapping  with @Controller
 public class HomeController {
 
-    @RequestMapping("/home") // "/home" is the endpoint
+    @RequestMapping("/home") // RequestMapping is for endpoint  "/home" is the endpoint
     public String getHomePage(){  // which end point? www.amazon.com/login or register
         return "home.html"; // returns view
     }
@@ -16,7 +16,7 @@ public class HomeController {
     public String getHomePage2(){
         return "home.html"; // returns view
     }
-    @RequestMapping // nothing and /
+    @RequestMapping // nothing and / : default
     public String getHomePage3(){
         return "home.html"; // returns view
     }
