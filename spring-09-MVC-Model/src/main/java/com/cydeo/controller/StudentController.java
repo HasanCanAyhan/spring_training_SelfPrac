@@ -11,7 +11,7 @@ public class StudentController {
     public String homePage(Model model){
 
         //pass some Data to the view/html
-        //Model , we are using carry Data to view
+        //Model , we are using it to carry Data to view
 
         //String name = "Ozzy";
         model.addAttribute("name","Cydeo");
