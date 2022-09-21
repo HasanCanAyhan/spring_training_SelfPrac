@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller // to register to Handler Mapping
-public class MentorController {
+public class MentorController {  // it was a Task
 
     @RequestMapping("/list")
     public String mentorPage(Model model){
