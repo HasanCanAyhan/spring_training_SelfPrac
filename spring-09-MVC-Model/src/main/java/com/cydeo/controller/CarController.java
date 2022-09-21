@@ -11,16 +11,17 @@ public class CarController {
 
     //localhost:8080/info3?make=Honda
     @RequestMapping("/info")
-    public String carInfo(@RequestParam String make, Model model){ // to capture url
+    public String carInfo(@RequestParam String make, Model model){ // to capture url, to show Honda´s view
 
+        //System.out.println(make);
         model.addAttribute("make",make);
 
         return "car/car-info";
 
     }
 
-    //localhost:8080/info3 (KIA)
-    @RequestMapping("/info2")
+    //localhost:8080/info2 (KIA)
+    @RequestMapping("/info2") // default
     public String carInfo2(@RequestParam(value = "make",required = false,defaultValue = "KIA") String make, Model model){ // to capture url
 
         model.addAttribute("make",make);
