@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Controller // to register to Handler Mapping
 public class MentorController {
 
     @RequestMapping("/list")
