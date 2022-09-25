@@ -38,7 +38,7 @@ public class StudentController {
         model.addAttribute("numbers",numbers);
 
         LocalDate dt = LocalDate.now();
-        model.addAttribute("date");
+        model.addAttribute("date",dt);
 
 
         Student student = new Student(1,"Mike","Smith");
