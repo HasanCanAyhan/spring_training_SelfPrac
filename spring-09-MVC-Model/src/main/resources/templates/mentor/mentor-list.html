@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<table>
+<table border="2px">
     <thead>
     <tr>
         <td>First Name</td>
@@ -16,24 +16,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td th:text="${mentors.get(0).firstName}"></td>
-        <td th:text="${mentors.get(0).lastName}"></td>
-        <td th:text="${mentors.get(0).age}"></td>
-        <td th:text="${mentors.get(0).getGender()}"></td>
+    <tr th:each="mentor : ${mentors}">
+
+        <td th:text="${mentor.firstName}"></td>
+        <td th:text="${mentor.lastName}"></td>
+        <td th:text="${mentor.age}"></td>
+        <td th:text="${mentor.gender}"></td>
+
     </tr>
-    <tr>
-        <td th:text="${mentors.get(1).firstName}"></td>
-        <td th:text="${mentors.get(1).lastName}"></td>
-        <td th:text="${mentors.get(1).age}"></td>
-        <td th:text="${mentors.get(1).getGender()}"></td>
-    </tr>
-    <tr>
-        <td th:text="${mentors.get(2).firstName}"></td>
-        <td th:text="${mentors.get(2).lastName}"></td>
-        <td th:text="${mentors.get(2).age}"></td>
-        <td th:text="${mentors.get(2).getGender()}"></td>
-    </tr>
+
     </tbody>
 </table>
 
