@@ -30,13 +30,15 @@ public class StudentController {
      */
 
 
-    @RequestMapping("/welcome") // localhost:8080/student/welcome?name=Ozzy id=3 comes from register html
-    public String welcome(@RequestParam String name ){
 
-        System.out.println(name);
+    @RequestMapping("/welcome") // localhost:8080/student/welcome?name=Ozzy  comes from register html
+    public String welcome(@RequestParam String name){ // @RequestParam String name
+
+        System.out.println(name);// you can also send this paramater to DataBase
 
         return "student/welcome";
     }
+
 
 
 }
