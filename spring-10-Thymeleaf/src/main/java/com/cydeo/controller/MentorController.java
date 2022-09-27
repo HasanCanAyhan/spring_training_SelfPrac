@@ -21,7 +21,7 @@ public class MentorController {
         List<String> batchList = Arrays.asList("JD1","JD2","JD3");
         model.addAttribute("batchList",batchList);
 
-        model.addAttribute("mentor",new Mentor());
+        model.addAttribute("mentor",new Mentor()); // empty object
 
         return "mentor/mentor-register";
     }
@@ -30,14 +30,18 @@ public class MentorController {
     public String submitForm(@ModelAttribute("mentor") Mentor mentor){
         //PathVariable is the part you capturing from URL itself.
         //@ModelAttribute is the object you saved from the form in the view.
+        // how can I access to "mentor" attribute in this method
 
+
+
+
+        //return "mentor/mentor-confirmation"; 1
 
         //model.addAttribute("mentor",new Mentor()); // empty object
 
         //return "mentor/mentor-register";
-        //return "mentor/mentor-confirmation";
 
-        return "redirect:/mentor/register";
+        return "redirect:/mentor/register"; // to return again register page with the empty form-empty object
     }
 
 
