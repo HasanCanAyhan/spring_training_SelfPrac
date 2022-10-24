@@ -3,6 +3,7 @@ package com.cydeo.entity;
 import com.cydeo.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -37,6 +38,11 @@ public class Payment {
     //wih cascade statement , child one  will be filled which is here paymentDetail fields
     @JoinColumn(name = "payment_detail_id")
     private PaymentDetail paymentDetail;
+
+    @ManyToOne
+    private Merchant merchant;
+
+
 
     public Payment(LocalDate createdDate, BigDecimal amount, Status paymentStatus) {
         this.createdDate = createdDate;

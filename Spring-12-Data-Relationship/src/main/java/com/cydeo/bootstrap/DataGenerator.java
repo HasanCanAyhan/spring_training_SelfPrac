@@ -1,8 +1,10 @@
 package com.cydeo.bootstrap;
 
+import com.cydeo.entity.Merchant;
 import com.cydeo.entity.Payment;
 import com.cydeo.entity.PaymentDetail;
 import com.cydeo.enums.Status;
+import com.cydeo.repository.MerchantRepository;
 import com.cydeo.repository.PaymentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -15,9 +17,11 @@ public class DataGenerator implements CommandLineRunner {
 
 
     private final PaymentRepository paymentRepository;
+    private final MerchantRepository merchantRepository;
 
-    public DataGenerator(PaymentRepository paymentRepository) {
+    public DataGenerator(PaymentRepository paymentRepository, MerchantRepository merchantRepository) {
         this.paymentRepository = paymentRepository;
+        this.merchantRepository = merchantRepository;
     }
 
 
@@ -35,16 +39,27 @@ public class DataGenerator implements CommandLineRunner {
 
         payment2.setPaymentDetail(paymentDetail2);
 
+        Merchant merchant1 = new Merchant("AmazonSubMerchant","M123",new BigDecimal("0.25"),new BigDecimal("3.25"),5);
+
+        payment1.setMerchant(merchant1);
+        payment2.setMerchant(merchant1);
+
+
         //1.Way
         //paymentDetailRepository.save(paymentDetail1)
         //paymentDetailRepository.save(paymentDetail2)
 
+
+        merchantRepository.save(merchant1);
+
         paymentRepository.save(payment1);
         paymentRepository.save(payment2);
 
-        System.out.println(paymentRepository.findById(2L).get().getPaymentDetail().getComissionAmount());//behind sql statements
 
-        paymentRepository.delete(payment1);
+
+        //System.out.println(paymentRepository.findById(2L).get().getPaymentDetail().getComissionAmount());//behind sql statements
+
+        //paymentRepository.delete(payment1);
 
 
     }
