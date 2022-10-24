@@ -31,7 +31,10 @@ public class Payment {
     //Spring creates relationship, but it does not know what kind of relation
     //it depends on business logic
 
-    @OneToOne  //foreign key column created : join done  //one payment has only one payment detail
+    //@OneToOne(cascade = CascadeType.ALL) //
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}) // child still over there
+    //foreign key column created : join done  //one payment has only one payment detail
+    //wih cascade statement , child one  will be filled which is here paymentDetail fields
     @JoinColumn(name = "payment_detail_id")
     private PaymentDetail paymentDetail;
 
