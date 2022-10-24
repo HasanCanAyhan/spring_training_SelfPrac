@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @Data
-//@AllArgsConstructor
+//@AllArgsConstructor :  you should not put it, bcs you have to assign id, but id is coming from postgres automatically
 public class Car {
 
     @Id
