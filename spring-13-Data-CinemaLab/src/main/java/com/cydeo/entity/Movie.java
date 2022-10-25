@@ -6,12 +6,10 @@ import com.cydeo.enums.MovieType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,6 +27,17 @@ public class Movie extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private MovieState state;
     private BigDecimal price;
+
+    //One Movie has many genre
+    //A movie can have multiple genres and a genre can be applied to multiple movies too.
+    //So it is a business logic
+    @ManyToMany
+    @JoinTable(name = "movie_genre_rel",
+    joinColumns = @JoinColumn(name = "movie_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genre> genreList; // Set is better bcs set using not many query for data operations
+
+
 
 
 }
