@@ -10,11 +10,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name = "regions")
-public class Region {
+public class Region extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String region;
 

@@ -13,17 +13,13 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @Table(name = "employees")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Employee extends BaseEntity{
 
     private String  firstName;
     private String lastName;
     private String email;
 
-    @Column(columnDefinition = "DATE")
+    //@Column(columnDefinition = "DATE")
     private LocalDate hireDate;
 
     @Enumerated(EnumType.STRING)
@@ -31,9 +27,11 @@ public class Employee {
 
     private Integer salary;
 
-    private String department;
+    @ManyToOne
+    @JoinColumn(name = "department")
+    private Department department; // department foreign key
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Region region;
 
 

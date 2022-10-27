@@ -11,11 +11,10 @@ import javax.persistence.*;
 @Table(name = "departments")
 public class Department {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String department;
+    @Id
+    private String department;//according to data.sql , primary key is department
+
     private String division;
 
 
