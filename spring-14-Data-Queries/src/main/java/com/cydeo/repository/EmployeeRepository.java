@@ -38,14 +38,14 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     //display top unique 3 employees that is making less than ""
     List<Employee> findDistinctTop3BySalaryLessThan(Integer salary);
 
-    //display all employees
+    //display all employees that do not have email
     List<Employee> findByEmailIsNull();
 
 
     //--------------------------------------
-    //jpql
+    //using JPQL
 
-    //Employee here is Class name not table name
+    //Employee here is Class name not table name !!!
     @Query("Select employee FROM Employee employee WHERE employee.email = 'amcnee1@google.es' ")
     Employee retrieveEmployeeDetail();
 

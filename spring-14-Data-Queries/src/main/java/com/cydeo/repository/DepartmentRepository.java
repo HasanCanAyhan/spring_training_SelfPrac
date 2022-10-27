@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<Department,String> {
 
+    //Using derived queries
+
     //display all departments in the furniture department
     List<Department> findByDepartment(String department);
 
