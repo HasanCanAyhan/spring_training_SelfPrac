@@ -1,7 +1,9 @@
 package com.cydeo.repository;
 
 import com.cydeo.entity.Employee;
+import org.hibernate.sql.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +33,6 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
 
     //display all employees where salaries greater and equal to "" in order-salary
-    List<Employee> findBySalaryGreaterThanEqualOrderBy(Integer salary);
     List<Employee> findBySalaryGreaterThanEqualOrderBySalaryDesc(Integer salary);
 
     //display top unique 3 employees that is making less than ""
@@ -39,5 +40,19 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
     //display all employees
     List<Employee> findByEmailIsNull();
+
+
+    //--------------------------------------
+    //jpql
+
+    //Employee here is Class name not table name
+    @Query("Select employee FROM Employee employee WHERE employee.email = 'amcnee1@google.es' ")
+    Employee retrieveEmployeeDetail();
+
+    @Query("Select e.salary FROM Employee e WHERE e.email = 'amcnee1@google.es' ")
+    Integer retrieveEmployeeSalary();
+
+
+
 
 }
