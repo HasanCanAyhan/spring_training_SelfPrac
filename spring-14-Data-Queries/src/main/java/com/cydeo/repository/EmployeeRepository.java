@@ -45,6 +45,10 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     //--------------------------------------
     //using JPQL
 
+    //Generell Info-Flow
+    //Nothing new actually, just call service method from controller,
+    // and call repository method from service.
+
     //Employee here is Class name not table name !!!
     @Query("Select employee FROM Employee employee WHERE employee.email = 'amcnee1@google.es' ")
     Employee retrieveEmployeeDetail();
@@ -52,9 +56,35 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     @Query("Select e.salary FROM Employee e WHERE e.email = 'amcnee1@google.es' ")
     Integer retrieveEmployeeSalary();
 
+    //Nor equal
+    @Query(" SELECT e FROM Employee e WHERE e.salary <> ?1    ")
+    List<Employee> retrieveEmployeeSalaryNotEqual(int salary);
 
-    //Nothing new actually, just call service method from controller,
-    // and call repository method from service.
+    // like  / Contains / StartsWith / EndsWith
+    @Query(" SELECT e FROM Employee e WHERE e.firstName like ?1 ")
+    List<Employee> retrieveEmployeeFirstNameLike(String pattern);
+
+    //Less Than - Greater Than
+
+    @Query("select e from Employee  e  where e.salary < ?1 ")
+    List<Employee> retrieveEmployeeSalaryLessThan(int salary);
+
+    @Query("select e.firstName from Employee  e  where e.salary > ?1 ")
+    List<String> retrieveEmployeeSalaryGreaterThan(int salary);
+
+    //Between
+    @Query("select e.salary from Employee  e  where e.salary between ?1 and ?2 ")
+    List<Integer> retrieveSalaryBetween(int salary1, int salary2);
+
+    @Query("select e from Employee  e  where e.salary between ?1 and ?2 ")
+    List<Employee> retrieveEmployeeSalaryBetween(int salary1, int salary2);
+
+    //Before
+    @Query("select e from Employee  e  where e.hireDate > ?1")
+    List<Employee> retrieveEmployeeHireDateBefore(LocalDate date);
+
+
+
 
 
 }
