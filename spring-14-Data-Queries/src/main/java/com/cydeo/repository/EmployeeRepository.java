@@ -4,6 +4,7 @@ import com.cydeo.entity.Employee;
 import org.hibernate.sql.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -57,7 +58,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     Integer retrieveEmployeeSalary();
 
     //Nor equal
-    @Query(" SELECT e FROM Employee e WHERE e.salary <> ?1    ")
+    @Query(" SELECT e FROM Employee e WHERE e.salary <> ?1    ") // positional
     List<Employee> retrieveEmployeeSalaryNotEqual(int salary);
 
     // like  / Contains / StartsWith / EndsWith
@@ -98,6 +99,18 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
     @Query("select e from Employee  e   order by e.salary desc  ")
     List<Employee> retrieveEmployeeSalaryOrderDesc();
+
+    //-----------------------------------------------------------------
+    //NATIVE QUERY - method is not important - pure sql statements - everything should be match with table
+
+    @Query(value = "select * from employees where salary = ?1", nativeQuery = true)
+    List<Employee> retrieveEmployeeDetailBySalary(int salary);
+
+    //NAMED PARAMETER
+    @Query("select e from Employee  e where e.salary = :salary")
+    List<Employee> retrieveEmployeeSalary(@Param("salary") int salary);
+
+
 
 
 }
