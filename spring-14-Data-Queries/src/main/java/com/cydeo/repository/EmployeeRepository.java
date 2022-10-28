@@ -53,6 +53,8 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     Integer retrieveEmployeeSalary();
 
 
+    //Nothing new actually, just call service method from controller,
+    // and call repository method from service.
 
 
 }
