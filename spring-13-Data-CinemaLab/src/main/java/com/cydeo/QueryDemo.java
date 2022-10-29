@@ -134,6 +134,18 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("getAllMoviesBetweenRangeOfPrices :  " + movieRepository.getAllMoviesBetweenRangeOfPrices(BigDecimal.valueOf(15),BigDecimal.valueOf(20)));
         System.out.println("-----------------------------------------------------------------");
         System.out.println("getAllMoviesNames :  " + movieRepository.getAllMoviesNames());
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("getMovieByName :  " + movieRepository.getMovieByName("The Gentleman"));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("getMoviesInSpecificRangeOfPrice :  " + movieRepository.getMoviesInSpecificRangeOfPrice(BigDecimal.valueOf(12),BigDecimal.valueOf(25)));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("getMoviesInRangeOfDuration :  " + movieRepository.getMoviesInRangeOfDuration(113, 135));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("getTop5MostExpensiveMovies :  " + movieRepository.getTop5MostExpensiveMovies());
+        System.out.println("-----------------------------------------------------------------");
+
+
+
 
 
 
