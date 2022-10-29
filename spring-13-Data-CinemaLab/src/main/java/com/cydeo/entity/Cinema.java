@@ -11,7 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Cinema extends BaseEntity{
 
@@ -22,4 +24,12 @@ public class Cinema extends BaseEntity{
     private Location location;
 
 
+    @Override
+    public String toString() {
+        return "Cinema{" +
+                "name='" + name + '\'' +
+                ", sponsoredName='" + sponsoredName + '\'' +
+                ", location=" + location +
+                '}';
+    }
 }
