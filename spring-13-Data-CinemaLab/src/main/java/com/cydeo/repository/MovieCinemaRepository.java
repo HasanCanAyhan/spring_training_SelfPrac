@@ -1,5 +1,6 @@
 package com.cydeo.repository;
 
+import com.cydeo.entity.Cinema;
 import com.cydeo.entity.Movie;
 import com.cydeo.entity.MovieCinema;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,11 +18,16 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
 
     //Write a derived query to read movie cinema with id
 
+    MovieCinema findMovieCinemaByMovieAndCinema(Movie movie, Cinema cinema);
 
     //Write a derived query to count all movie cinemas with a specific cinema id
 
+    List<MovieCinema> findMovieCinemasByCinema(Cinema cinema);
+
 
     //Write a derived query to count all movie cinemas with a specific movie id
+
+    List<MovieCinema> findMovieCinemasByMovie(Movie movie);
 
 
     //Write a derived query to list all movie cinemas with higher than a specific date
@@ -31,6 +37,7 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
 
     //Write a derived query to find the top 3 expensive movies
 
+    List<MovieCinema> findTop3ByMovie(Movie movie);
 
 
     //Write a derived query to list all movie cinemas that contain a specific movie name

@@ -1,10 +1,14 @@
 package com.cydeo;
 
+import com.cydeo.entity.Movie;
 import com.cydeo.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class QueryDemo implements CommandLineRunner {
@@ -97,8 +101,30 @@ public class QueryDemo implements CommandLineRunner {
 
 
 
+         */
+
         System.out.println("----------------MOVIE-CINEMA---------------------"); // nochmal widerholen
 
+        System.out.println("findMovieCinemaByMovieAndCinema : " + movieCinemaRepository.findMovieCinemaByMovieAndCinema(movieRepository.findById(1L).get(), cinemaRepository.findById(1L).get()));
+        System.out.println("------------------------------------------------------------------");
+
+        System.out.println("findMovieCinemasByCinema : " + movieCinemaRepository.findMovieCinemasByCinema(cinemaRepository.findById(1L).get()));
+        System.out.println("------------------------------------------------------------------");
+
+        System.out.println("findMovieCinemasByMovie : " + movieCinemaRepository.findMovieCinemasByMovie(movieRepository.findById(1L).get()));
+
+        List<Movie> movieList = movieRepository.findAll().stream().sorted(Comparator.comparing(Movie::getPrice).reversed()).limit(3).collect(Collectors.toList());
+
+        for (Movie movie : movieList) {
+            System.out.println("findTop3ByMovie : " + movieCinemaRepository.findTop3ByMovie(movie));
+        }
+
+
+
+
+
+
+        /*
         System.out.println("findMovieCinemaByDateTimeGreaterThan :  " + movieCinemaRepository.findMovieCinemaByDateTimeGreaterThan(LocalDateTime.of(2020,5,12,5,12)));
         System.out.println("------------------------------------------------------------------");
         System.out.println("findMovieCinemaByMovie_Name :  " + movieCinemaRepository.findMovieCinemaByMovie_Name("Tenet"));
@@ -111,6 +137,13 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("------------------------------------------------------------------");
         System.out.println("getMovieCinemasByLocationName :  " + movieCinemaRepository.getMovieCinemasByLocationName("AMC Empire 25"));
 
+
+         */
+
+
+
+
+/*
 
 
         System.out.println("----------------MOVIE---------------------");
@@ -178,7 +211,7 @@ public class QueryDemo implements CommandLineRunner {
 
 
 
-         */
+
 
 
         System.out.println("----------------USER---------------------");
@@ -226,7 +259,7 @@ public class QueryDemo implements CommandLineRunner {
 
 
 
-
+         */
 
 
 
