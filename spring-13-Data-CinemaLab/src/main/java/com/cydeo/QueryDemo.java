@@ -140,7 +140,7 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("getTop5MostExpensiveMovies :  " + movieRepository.getTop5MostExpensiveMovies());
         System.out.println("-----------------------------------------------------------------");
 
-         */
+
 
         System.out.println("----------------TICKET---------------------");
 
@@ -175,6 +175,54 @@ public class QueryDemo implements CommandLineRunner {
         //??????????????????????????
         //System.out.println("retrieveTicketsWhereSpecificValueContainableInUsernameOrAccountNameOrMovieName :  "
           //      + ticketRepository.retrieveTicketsWhereSpecificValueContainableInUsernameOrAccountNameOrMovieName());
+
+
+
+         */
+
+
+        System.out.println("----------------USER---------------------");
+
+
+        System.out.println("findByEmail :  " + userRepository.findByEmail("josie_story@email.com"));
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("findByUsername :  " + userRepository.findByUsername("josieStory"));
+
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("findUserBy :  " + userRepository.findUserByUsernameContains("j"));
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("findUserByUsernameContainsIgnoreCase :  " + userRepository.findUserByUsernameContainsIgnoreCase("J"));
+        System.out.println("-----------------------------------------------------------------");
+
+        //Write a derived query to list all users with an age greater than a specified age?
+        //???????????????????????????????????????????????????????????????
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("retrieveUserByEmail :  " + userRepository.retrieveUserByEmail("josie_story@email.com"));
+
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("retrieveUserByUsername :  " + userRepository.retrieveUserByUsername("josieStory"));
+
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveUsers :  " + userRepository.retrieveUsers());
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveUsersContainASpecificName :  " + userRepository.retrieveUsersContainASpecificName("a"));
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveAllUsers :  " + userRepository.retrieveAllUsers());
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveUsersByAgeBetween :  " + userRepository.retrieveUsersByAgeBetween(10,35));
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveSpecificUserByEmail :  " + userRepository.retrieveSpecificUserByEmail("josie_story@email.com"));
+
 
 
 
