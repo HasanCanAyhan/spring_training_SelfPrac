@@ -1,18 +1,10 @@
 package com.cydeo;
 
-import com.cydeo.enums.MovieState;
-import com.cydeo.enums.MovieType;
-import com.cydeo.enums.UserRole;
 import com.cydeo.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class QueryDemo implements CommandLineRunner {
@@ -23,13 +15,17 @@ public class QueryDemo implements CommandLineRunner {
 
     private final MovieCinemaRepository movieCinemaRepository;
     private final MovieRepository movieRepository;
+    private final TicketRepository ticketRepository;
+    private final UserRepository userRepository;
 
-    public QueryDemo(AccountRepository accountRepository, CinemaRepository cinemaRepository, GenreRepository genreRepository, MovieCinemaRepository movieCinemaRepository, MovieRepository movieRepository) {
+    public QueryDemo(AccountRepository accountRepository, CinemaRepository cinemaRepository, GenreRepository genreRepository, MovieCinemaRepository movieCinemaRepository, MovieRepository movieRepository, TicketRepository ticketRepository, UserRepository userRepository) {
         this.accountRepository = accountRepository;
         this.cinemaRepository = cinemaRepository;
         this.genreRepository = genreRepository;
         this.movieCinemaRepository = movieCinemaRepository;
         this.movieRepository = movieRepository;
+        this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -115,7 +111,7 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("------------------------------------------------------------------");
         System.out.println("getMovieCinemasByLocationName :  " + movieCinemaRepository.getMovieCinemasByLocationName("AMC Empire 25"));
 
-         */
+
 
         System.out.println("----------------MOVIE---------------------");
         System.out.println("readByName :  " + movieRepository.findMovieByName("The Gentleman"));
@@ -143,6 +139,44 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("-----------------------------------------------------------------");
         System.out.println("getTop5MostExpensiveMovies :  " + movieRepository.getTop5MostExpensiveMovies());
         System.out.println("-----------------------------------------------------------------");
+
+         */
+
+        System.out.println("----------------TICKET---------------------");
+
+        System.out.println("countTicketByUserAccount :  " + ticketRepository.countTicketByUserAccount(userRepository.findById(1L).get()));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("findByUserAccount_Email :  " + ticketRepository.findByUserAccount_Email("josie_story@email.com"));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("countTicketByMovieCinema_Movie :  " + ticketRepository.countTicketByMovieCinema_Movie(movieRepository.findById(3L).get()));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("findTicketsByDateTimeBetween :  " + ticketRepository.findTicketsByDateTimeBetween(LocalDateTime.of(2000,1,1,8,15),LocalDateTime.of(2025,1,1,8,30) ));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("findTicketsBoughtFromASpecificUser :  " + ticketRepository.findTicketsBoughtFromASpecificUser(userRepository.findById(2L).get()));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("findTicketsBetweenDates :  " + ticketRepository.findTicketsBetweenDates(LocalDateTime.of(2000,1,1,8,15),LocalDateTime.of(2025,1,1,8,30) ));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("countTicketWhichUserBought :  " + ticketRepository.countTicketWhichAUserBought(userRepository.findById(1L).get()));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("countTicketsOfAUserBoughtWhichDateTimeBetween :  " + ticketRepository.countTicketsOfAUserBoughtWhichDateTimeBetween(
+                userRepository.findById(1L).get(), LocalDateTime.of(2000,1,1,8,15),LocalDateTime.of(2025,1,1,8,30) ));
+        System.out.println("-----------------------------------------------------------------");
+        //?????????????????
+        //System.out.println("distinctAllTicketsByMovieName :  " + ticketRepository.distinctAllTicketsByMovieName());
+        System.out.println("-----------------------------------------------------------------");
+
+        System.out.println("getAllTicketsByUserEmail :  " + ticketRepository.getAllTicketsByUserEmail(userRepository.findById(1L).get().getEmail()));
+
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("retrieveAllTickets :  " + ticketRepository.retrieveAllTickets());
+
+
+        System.out.println("-----------------------------------------------------------------");
+        //??????????????????????????
+        //System.out.println("retrieveTicketsWhereSpecificValueContainableInUsernameOrAccountNameOrMovieName :  "
+          //      + ticketRepository.retrieveTicketsWhereSpecificValueContainableInUsernameOrAccountNameOrMovieName());
+
+
 
 
 

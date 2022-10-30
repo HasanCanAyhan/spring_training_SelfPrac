@@ -42,6 +42,7 @@ public class Movie extends BaseEntity {
     private List<Genre> genreList; // Set is better bcs set using not many query for data operations
 
 
+
     @Override
     public String toString() {
         return "Movie{" +
