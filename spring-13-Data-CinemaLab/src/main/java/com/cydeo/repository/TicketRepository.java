@@ -5,6 +5,7 @@ import com.cydeo.entity.Ticket;
 import com.cydeo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     //Write a derived query to count how many tickets a user bought
 
-    Integer countTicketByUserAccount(User user);
+    Integer countTicketByUserAccountId(Long userId);
 
     //Write a derived query to list all tickets by specific email
 
@@ -27,7 +28,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     //Write a derived query to count how many tickets are sold for a specific movie
 
-    Integer countTicketByMovieCinema_Movie(Movie movie);
+    Integer countTicketByMovieCinema_MovieName(String name);
 
 
     //Write a derived query to list all tickets between a range of dates
@@ -39,14 +40,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     //Write a JPQL query that returns all tickets are bought from a specific user
 
-    @Query("select t from Ticket t where t.userAccount = ?1")
-    List<Ticket> findTicketsBoughtFromASpecificUser(User user);
+    @Query("select t from Ticket t where t.userAccount.id = ?1")
+    List<Ticket> findTicketsBoughtFromASpecificUser(@Param("userId") Long userId);
 
 
     //Write a JPQL query that returns all tickets between a range of dates
 
     @Query("select t from Ticket t where t.dateTime between ?1 and ?2")
-    List<Ticket> findTicketsBetweenDates(LocalDateTime dateTime1, LocalDateTime dateTime2);
+    List<Ticket> findTicketsBetweenDates(@Param("dateTime1") LocalDateTime dateTime1,@Param("dateTime2") LocalDateTime dateTime2);
 
 
     // ------------------- Native QUERIES ------------------- //
@@ -55,28 +56,24 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     @Query(value = "select count(ticket) from ticket\n" +
             "where ticket.user_account_id = ?1 ",nativeQuery = true)
-    Integer countTicketWhichAUserBought(User user);
+    Integer countTicketWhichAUserBought(Long  userId);
 
 
     //Write a native query to count the number of tickets a user bought in a specific range of dates
 
     @Query(value = "select count(ticket) from ticket\n" +
             "where user_account_id = ?1  and  date_time between ?2 and ?3",nativeQuery = true)
-    Integer countTicketsOfAUserBoughtWhichDateTimeBetween(User user, LocalDateTime dateTime1,LocalDateTime dateTime2);
+    Integer countTicketsOfAUserBoughtWhichDateTimeBetween(Long userId, LocalDateTime dateTime1,LocalDateTime dateTime2);
 
 
 
     //Write a native query to distinct all tickets by movie name
-    //?????????????????????????????????????
 
-    //List<Ticket> distinctAllTicketsByMovieName();
+    @Query(value = "select distinct (m.name) from ticket t join movie_cinema mc ON mc.id = t.movie_cinema_id join movie m on m.id = mc.movie_id",nativeQuery = true)
+    List<String> retrieveAllDistinctMovieNames();
 
-    /*
-    select distinct(ticket) from ticket
-    join movie_cinema mc on mc.id = ticket.movie_cinema_id
-    join movie m on m.id = mc.movie_id
-    where m.name = 'The Nights Before Christmas';
-     */
+
+
 
 
 
@@ -97,18 +94,16 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     //Write a native query to list all tickets where a specific value should be containable in the username or account name or movie name
 
-    //???????????????????????????????????????????????
-   // List<Ticket> retrieveTicketsWhereSpecificValueContainableInUsernameOrAccountNameOrMovieName();
-    /*
-    select * from ticket
-    join user_account ua on ua.id = ticket.user_account_id
-             join account_details ad on ad.id = ua.account_details_id
-             join movie_cinema mc on mc.id = ticket.movie_cinema_id
-             join movie m on m.id = mc.movie_id
-    where ua.username = 'j%' or
-          ad.name = 'J%'or
-          m.name = 'T%';
+    @Query(value = "    select * from ticket t \n" +
+            "    join user_account ua on ua.id = t.user_account_id\n" +
+            "             join account_details ad on ad.id = ua.account_details_id\n" +
+            "             join movie_cinema mc on mc.id = t.movie_cinema_id\n" +
+            "             join movie m on m.id = mc.movie_id\n" +
+            "    where ua.username ILIKE concat('%',?1,'%')  or\n" +
+            "          ad.name ILIKE concat('%',?1,'%') or\n" +
+            "          m.name ILIKE concat('%',?1,'%') ;",nativeQuery = true)
+    List<Ticket> retrieveAllBySearchCriteria(String searchCriteria);
 
-     */
+
 
 }
