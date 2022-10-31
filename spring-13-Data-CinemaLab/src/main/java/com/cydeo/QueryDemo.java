@@ -273,6 +273,11 @@ public class QueryDemo implements CommandLineRunner {
          */
 
 
+        System.out.println("1 : " + userRepository.findUserByUsernameContains("josieStory"));
+
+        System.out.println("--------------------");
+
+        System.out.println("2 : " + userRepository.findAllByAccountNameContaining("Josie D Story"));
 
 
     }
