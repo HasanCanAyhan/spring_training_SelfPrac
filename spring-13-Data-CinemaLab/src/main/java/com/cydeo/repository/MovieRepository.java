@@ -5,12 +5,14 @@ import com.cydeo.enums.MovieState;
 import com.cydeo.enums.MovieType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
@@ -19,7 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     //Write a derived query to read a movie with a name
 
-    Movie findMovieByName(String name);
+   Optional<Movie> findMovieByName(String name);
 
 
     //Write a derived query to list all movies between a range of prices
@@ -29,12 +31,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     //Write a derived query to list all movies where duration exists in the specific list of duration
 
-    //??????????yaptim ama bir dha bak
-    List<Movie> findByDuration(Integer durations);
+    List<Movie> findByDurationIn(List<Integer> durations);
 
     //Write a derived query to list all movies with higher than a specific release date
 
-    List<Movie> findMovieByReleaseDateGreaterThan(LocalDate date);
+    List<Movie> findMovieByReleaseDateAfter(LocalDate date);
 
     //Write a derived query to list all movies with a specific state and type
 
@@ -51,7 +52,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     //Write a JPQL query that returns all movie names
 
-    @Query("select m.name from Movie m")
+    @Query("select distinct m.name from Movie m")
     List<String> getAllMoviesNames();
 
 
@@ -61,7 +62,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query(value = "select * from movie\n" +
             "where name = ?1", nativeQuery = true)
-    Movie getMovieByName(String name);
+    Optional<Movie> getMovieByName(@Param("name") String name);
 
 
     //Write a native query that return the list of movies in a specific range of prices
@@ -74,8 +75,12 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     //Write a native query to return all movies where duration exists in the range of duration
 
     @Query(value = "select * from movie\n" +
-            "where duration between ?1 and ?2", nativeQuery = true)
+            "where duration between ?1 and ?2", nativeQuery = true) // also: in()
     List<Movie> getMoviesInRangeOfDuration(Integer duration1, Integer duration2);
+
+ @Query(value = "select * from movie\n" +
+         "where duration IN ?1", nativeQuery = true) // also: in()
+ List<Movie> getMoviesInRangeOfDuration2(List<Integer> durations); // ?1 : List<Integer>
 
 
     //Write a native query to list the top 5 most expensive movies
