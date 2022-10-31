@@ -1,6 +1,7 @@
 package com.cydeo;
 
 import com.cydeo.entity.Movie;
+import com.cydeo.enums.UserRole;
 import com.cydeo.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,7 @@ public class QueryDemo implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+
         /*
 
         System.out.println("----------------ACCOUNT---------------------");
@@ -48,13 +50,13 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("------------------------------------------------------------------");
         System.out.println("findByAgeBetween :  " + accountRepository.findByAgeBetween(28,35));
         System.out.println("------------------------------------------------------------------");
-        System.out.println("findByAddressContains :  " + accountRepository.findByAddressContains("A"));
+        System.out.println("findByAddressContains :  " + accountRepository.findAllByAddressStartingWith("A"));
         System.out.println("------------------------------------------------------------------");
         System.out.println("findByAgeOrderByAge :  " + accountRepository.findAccountsByOrderByAgeDesc());
         System.out.println("------------------------------------------------------------------");
         System.out.println("retrieveAllAccounts :  " + accountRepository.retrieveAllAccounts());
         System.out.println("------------------------------------------------------------------");
-        System.out.println("retrieveAccountsByAdmin :  " + accountRepository.retrieveAccountsByAdmin(UserRole.ADMIN));
+        System.out.println("retrieveAccountsByAdmin :  " + accountRepository.retrieveAccountsByAdmin());
         System.out.println("------------------------------------------------------------------");
         System.out.println("retrieveAccountsBySortingAge :  " + accountRepository.retrieveAccountsBySortingAge());
         System.out.println("------------------------------------------------------------------");
@@ -62,8 +64,9 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("------------------------------------------------------------------");
         System.out.println("readAllAccountsWithAgeLowerThan2 :  " + accountRepository.readAllAccountsWithAgeLowerThan2(35));
         System.out.println("------------------------------------------------------------------");
-        System.out.println("retrieveAccountsContainsNameAddressCountryStateCity :  "
-                + accountRepository.retrieveAccountsContainsNameAddressCountryStateCity("Josie D Story","262  Lochmere Lane","United States","Kentucky"));
+
+       System.out.println("retrieveAccountsContainsNameAddressCountryStateCity :  "
+         + accountRepository.retrieveAllAccountsContainNameAddressCountryStateCity("a"));
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("readAllAccountsWithAgeHigherThan :  " + accountRepository.readAllAccountsWithAgeHigherThan(40));
@@ -71,21 +74,27 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("readAllAccountsWithAgeHigherThan2 :  " + accountRepository.readAllAccountsWithAgeHigherThan2(40));
 
 
+
+
+
+
+
         System.out.println("----------------CINEMA---------------------");
         System.out.println("findByName :  " + cinemaRepository.findByName("Hall 1 - EMPIRE"));
         System.out.println("------------------------------------------------------------------");
-        System.out.println("findTop3BySponsoredNameOrderByName :  " + cinemaRepository.findTop3BySponsoredNameOrderByName("PlayStation"));
+        System.out.println("findTop3BySponsoredNameOrderByName :  "
+                + cinemaRepository.findFirst3BySponsoredNameContainingOrderBySponsoredName("PlayStation"));
         System.out.println("------------------------------------------------------------------");
         System.out.println("findByLocation_Country :  " + cinemaRepository.findByLocation_Country("United States"));
         System.out.println("findByLocation_PostalCode :  " + cinemaRepository.findByLocation_PostalCode("10036"));
         System.out.println("------------------------------------------------------------------");
-        //System.out.println("findByNameOrSponsoredName :  " + cinemaRepository.findByNameOrSponsoredName("Quick Silver"));
+        System.out.println("findByNameOrSponsoredName :  " + cinemaRepository.findAllByNameOrSponsoredName("Quick Silver","PlayStation"));
         System.out.println("------------------------------------------------------------------");
         System.out.println("retrieveCinemaWithSpecificId :  " + cinemaRepository.retrieveCinemaWithSpecificId(1L));
         System.out.println("------------------------------------------------------------------");
         System.out.println("findAllCinemasByLocationCountry :  " + cinemaRepository.findAllCinemasByLocationCountry("United States"));
         System.out.println("------------------------------------------------------------------");
-        //System.out.println("findAllCinemasByNameOrSponsoredName :  " + cinemaRepository.findAllCinemasByNameOrSponsoredName("H","M"));
+        System.out.println("findAllCinemasByNameOrSponsoredName :  " + cinemaRepository.findAllCinemasByNameOrSponsoredName("H"));
         System.out.println("------------------------------------------------------------------");
         System.out.println("findCinemasBySortingName :  " + cinemaRepository.findCinemasBySortingName());
         System.out.println("------------------------------------------------------------------");
@@ -101,50 +110,34 @@ public class QueryDemo implements CommandLineRunner {
 
 
 
-         */
+
+
+
+
 
         System.out.println("----------------MOVIE-CINEMA---------------------"); // nochmal widerholen
 
-        System.out.println("findMovieCinemaByMovieAndCinema : " + movieCinemaRepository.findMovieCinemaByMovieAndCinema(movieRepository.findById(1L).get(), cinemaRepository.findById(1L).get()));
         System.out.println("------------------------------------------------------------------");
 
-        System.out.println("findMovieCinemasByCinema : " + movieCinemaRepository.findMovieCinemasByCinema(cinemaRepository.findById(1L).get()));
         System.out.println("------------------------------------------------------------------");
 
-        System.out.println("findMovieCinemasByMovie : " + movieCinemaRepository.findMovieCinemasByMovie(movieRepository.findById(1L).get()));
+        System.out.println("------------------------------------------------------------------");
 
-        List<Movie> movieList = movieRepository.findAll().stream().sorted(Comparator.comparing(Movie::getPrice).reversed()).limit(3).collect(Collectors.toList());
+        System.out.println("------------------------------------------------------------------");
 
-        for (Movie movie : movieList) {
-            System.out.println("findTop3ByMovie : " + movieCinemaRepository.findTop3ByMovie(movie));
-        }
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------");
 
 
+
+
+        */
 
 
 
 
         /*
-        System.out.println("findMovieCinemaByDateTimeGreaterThan :  " + movieCinemaRepository.findMovieCinemaByDateTimeGreaterThan(LocalDateTime.of(2020,5,12,5,12)));
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("findMovieCinemaByMovie_Name :  " + movieCinemaRepository.findMovieCinemaByMovie_Name("Tenet"));
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("findMovieCinemaByCinema_Location :  " + movieCinemaRepository.findMovieCinemaByCinema_Location_Name( "AMC Empire 25"));
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("findMovieCinemasWithHigherThanSpecificDate :  " + movieCinemaRepository.findMovieCinemasWithHigherThanSpecificDate(LocalDateTime.of(2020,5,12,5,12)));
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("getCountMovieCinemasByCinemaId :  " + movieCinemaRepository.getCountMovieCinemasByCinemaId(2L));
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("getMovieCinemasByLocationName :  " + movieCinemaRepository.getMovieCinemasByLocationName("AMC Empire 25"));
-
-
-         */
-
-
-
-
-/*
-
 
         System.out.println("----------------MOVIE---------------------");
         System.out.println("readByName :  " + movieRepository.findMovieByName("The Gentleman"));
@@ -255,6 +248,8 @@ public class QueryDemo implements CommandLineRunner {
 
         System.out.println("-----------------------------------------------------------------");
         System.out.println("retrieveSpecificUserByEmail :  " + userRepository.retrieveSpecificUserByEmail("josie_story@email.com"));
+
+
 
 
 

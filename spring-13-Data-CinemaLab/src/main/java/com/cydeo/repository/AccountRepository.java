@@ -19,17 +19,23 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findByState(String state);
 
 
+    //BY CNDLLH
+    //List<Account> findAllByCountryOrState(String country, String state);
+
+
+
     //Write a derived query to list all accounts with age lower than or equal to a specific value
     List<Account> findByAgeLessThanEqual(int age);
+
 
     //Write a derived query to list all accounts with a specific role
     List<Account> findByRole(UserRole role);
 
     //Write a derived query to list all accounts between a range of ages
-    List<Account> findByAgeBetween(int startAge,int endAge );
+    List<Account> findByAgeBetween(int age1,int age2 );
 
     //Write a derived query to list all accounts where the beginning of the address contains the keyword
-    List<Account>  findByAddressContains(String keyword);
+    List<Account>  findAllByAddressStartingWith(String keyword);
 
 
     //Write a derived query to sort the list of accounts with age
@@ -46,8 +52,8 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
     //Write a JPQL query to list all admin accounts
-    @Query("select a from Account a where a.role = ?1")
-    List<Account> retrieveAccountsByAdmin(UserRole role);
+    @Query("select a from Account a where a.role = 'ADMIN'")
+    List<Account> retrieveAccountsByAdmin();
 
     //Write a JPQL query to sort all accounts with age
     @Query("select a from Account a order by a.age")
@@ -59,16 +65,23 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     //Write a native query to read all accounts with an age lower than a specific value
 
     @Query(value = "SELECT * FROM account_details where age  < ?1",nativeQuery = true)
-    List<Account> readAllAccountsWithAgeLowerThan(int age); // native
+    List<Account> readAllAccountsWithAgeLowerThan(int age); // native , can be used with @Param("age") too
 
     @Query("SELECT a FROM Account a where a.age  < :age")
     List<Account> readAllAccountsWithAgeLowerThan2(@Param("age") int age); // named parameter
 
     //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state city
 
-    //???
-    @Query(value = "select * from account_details where name = ?1 and address = ?2 and country = ?3 and state = ?4",nativeQuery = true)
-    List<Account> retrieveAccountsContainsNameAddressCountryStateCity(String name, String address, String country, String state);
+
+    @Query(value = "select * from account_details ad where name ilike concat('%',?1,'%')" +
+            "or address ilike concat('%',?1,'%') " +
+            "or country ilike concat('%',?1,'%')" + // we can  do '%' || ?1 || '%' ?
+            "or ad.state ilike concat('%',?1,'%')" +
+            "or city ilike concat('%',?1,'%')", nativeQuery = true)
+    List<Account> retrieveAllAccountsContainNameAddressCountryStateCity(@Param("pattern") String pattern);
+
+
+
 
     //Write a native query to read all accounts with an age higher than a specific value
 
