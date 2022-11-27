@@ -8,7 +8,7 @@ import java.util.List;
 
 //@Controller
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/courses/api/v1")
 public class CourseController {
 
     private final CourseService courseService;
@@ -51,6 +51,8 @@ public class CourseController {
     public void deleteCourseById(@PathVariable("id") long courseId){
         courseService.deleteCourseById(courseId);
     }
+
+
 
 
 
