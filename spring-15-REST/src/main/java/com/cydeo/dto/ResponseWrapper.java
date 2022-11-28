@@ -24,7 +24,7 @@ public class ResponseWrapper {
         this.success = true;
     }
 
-    public ResponseWrapper(String message) {
+    public ResponseWrapper(String message) { // for delete
         this.message = message;
         this.code = HttpStatus.OK.value();
         this.success = true;
