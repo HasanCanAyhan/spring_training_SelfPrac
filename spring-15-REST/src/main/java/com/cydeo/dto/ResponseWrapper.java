@@ -24,7 +24,7 @@ public class ResponseWrapper {
         this.success = true;
     }
 
-    public ResponseWrapper(String message) { // for delete
+    public ResponseWrapper(String message) { // for delete bcs we can not return json with data, data is deleted, just to show delete message
         this.message = message;
         this.code = HttpStatus.OK.value();
         this.success = true;
