@@ -61,6 +61,7 @@ public class CourseController_ResponseEntity {
     public ResponseEntity<Void> updateCourse(@PathVariable("id") Long courseId, @RequestBody CourseDTO courseDTO){
         courseService.updateCourse(courseId,courseDTO);
         return ResponseEntity.noContent().build();
+        // also we can put ResponseEntity<CourseDTO>
     }
 
 
