@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "utc_offset"
 })
 @Generated("jsonschema2pojo")
-public class Location {
+public class LocationDTO {
 
     @JsonProperty("name")
     private String name;

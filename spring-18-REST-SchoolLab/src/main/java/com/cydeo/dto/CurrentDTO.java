@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "is_day"
 })
 @Generated("jsonschema2pojo")
-public class Current {
+public class CurrentDTO {
 
     @JsonProperty("observation_time")
     private String observationTime;

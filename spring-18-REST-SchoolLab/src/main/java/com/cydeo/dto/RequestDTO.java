@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "unit"
 })
 @Generated("jsonschema2pojo")
-public class Request {
+public class RequestDTO {
 
     @JsonProperty("type")
     private String type;
