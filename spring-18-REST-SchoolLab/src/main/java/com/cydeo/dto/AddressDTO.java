@@ -15,7 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)//if you dont want to see NULL FIELDS in your JsonResponses, we will use it.
+//That means, dont put null fileds to Json response while giving response
 public class AddressDTO {
 
     @JsonIgnore
@@ -40,6 +41,6 @@ public class AddressDTO {
     private TeacherDTO teacher;
 
     //this is null for now
-    private Integer currentTemperature; //weather information, which we will later et it from 3rd party API
+    private Integer currentTemperature; //weather information, which we will later get it from 3rd party API -consuming
 
 }
