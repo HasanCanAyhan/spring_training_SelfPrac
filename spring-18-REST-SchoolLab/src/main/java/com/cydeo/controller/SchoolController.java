@@ -49,6 +49,7 @@ public class SchoolController {
     @GetMapping("/parents")
     public ResponseEntity<ResponseWrapper> readAllParents() {
 
+        //                                AllArgsConstructor
         ResponseWrapper responseWrapper = new ResponseWrapper(true,"Parents are successfully retrieved", HttpStatus.OK.value(),
                 parentService.findAll());
 
