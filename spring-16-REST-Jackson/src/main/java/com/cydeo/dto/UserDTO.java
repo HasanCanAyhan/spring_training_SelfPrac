@@ -14,7 +14,7 @@ public class UserDTO {
 
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //city, state , account so field
-    private String password; // password should not be passed to UI Part through api
+    private String password; // password should not be passed to UI Part through api, write only, not read
     private String username;
     private UserRole role;
 
