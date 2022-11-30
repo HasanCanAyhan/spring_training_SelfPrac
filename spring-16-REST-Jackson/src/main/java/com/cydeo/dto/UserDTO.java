@@ -14,11 +14,11 @@ public class UserDTO {
 
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //city, state , account so field
-    private String password;
+    private String password; // password should not be passed to UI Part through api
     private String username;
     private UserRole role;
 
-    @JsonManagedReference
+    @JsonManagedReference // show accountDto inside userDto  //This field is  going to be serialized
     private AccountDTO account;
 
 }
