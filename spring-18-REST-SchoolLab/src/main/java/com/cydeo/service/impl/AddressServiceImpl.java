@@ -23,7 +23,7 @@ public class AddressServiceImpl implements AddressService {
     private final WeatherApiClient weatherApiClient;
 
 
-    @Value("${access_key}")
+    @Value("${access_key}")// to get the password from applicationProperties
     private String access_key;
 
     public AddressServiceImpl(AddressRepository addressRepository, MapperUtil mapperUtil, WeatherApiClient weatherApiClient) {
