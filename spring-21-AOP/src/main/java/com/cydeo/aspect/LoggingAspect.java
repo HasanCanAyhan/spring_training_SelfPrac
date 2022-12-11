@@ -3,6 +3,7 @@ package com.cydeo.aspect;
 
 import com.cydeo.dto.CourseDTO;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -147,7 +148,30 @@ public class LoggingAspect {
 
      */
 
+    //@Around
 
+    @Pointcut("@annotation(com.cydeo.annotation.LoggingAnnotation)")
+    public void loggingAnnotationPC(){}
 
+    @Around("loggingAnnotationPC()")
+    public Object anyLoggingAnnotationOperation(ProceedingJoinPoint proceedingJoinPoint){
+
+        logger.info("Before -> Method: {} - Parameter: {}"
+                ,proceedingJoinPoint.getSignature().toShortString(),proceedingJoinPoint.getArgs());
+
+        Object result = null;
+
+        try { // real method
+            result = proceedingJoinPoint.proceed(); // it is going to run the real method
+        }catch (Throwable throwable){
+            throwable.printStackTrace();
+        }
+
+        //After
+        logger.info("After -> Method: {} - Result: {}"
+                ,proceedingJoinPoint.getSignature().toShortString(),result.toString());
+
+        return result;
+    }
 
 }
