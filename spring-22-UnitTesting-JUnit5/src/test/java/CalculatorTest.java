@@ -98,4 +98,6 @@ class CalculatorTest {
 
     }
 
+    //maven - surefire-plugin you can use terminal to test
+
 }
