@@ -7,4 +7,12 @@ public class Calculator {
     }
 
 
+    public static int add2(int num1 , int num2){
+        if (num1 > num2) {
+            throw  new IllegalArgumentException("My Exception");
+        }
+        return num1 + num2;
+    }
+
+
 }
