@@ -35,9 +35,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectDTO getByProjectCode(String code) {
-        Project project = projectRepository.findByProjectCode(code);
-        return projectMapper.convertToDto(project);
+    public ProjectDTO getByProjectCode(String code) { // ""
+        Project project = projectRepository.findByProjectCode(code);//projectRepository.findByProjectCode(""); i am expecting an exception
+        return projectMapper.convertToDto(project); // will never run
     }
 
     @Override
