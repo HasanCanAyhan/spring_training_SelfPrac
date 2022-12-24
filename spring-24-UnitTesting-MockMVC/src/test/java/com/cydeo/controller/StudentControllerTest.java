@@ -58,7 +58,7 @@ public class StudentControllerTest {
         //actual -> {"firstName": "Mike", "lastName":  "Smith", "age": 20}
 
         JSONAssert.assertEquals(expected,actual,false);
-        // false : if first and second fields are matching, test will pass, if true in this case, it should be exactly match, test will fail.
+        // false : if first and second fields are matching, test will pass, if true in this case, it should be exactly match, otherwise test will fail.
 
     }
 

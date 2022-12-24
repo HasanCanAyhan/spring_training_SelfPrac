@@ -52,7 +52,7 @@ public class WelcomeControllerTest {
 
         mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("welcome"))//response body
+                .andExpect(content().string("welcome"))//content means : response body
                 .andReturn();// to finish
 
 
